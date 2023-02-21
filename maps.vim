@@ -35,6 +35,7 @@ nnoremap <leader>hs :split <cr>
 " Open file in new window
 "nnoremap <leader>f <C-w><C-f>
 nnoremap <leader>ee :vs %:h<cr>
+nnoremap <leader>w :q<cr>
 
 " Open file in OSX
 nnoremap <leader>oo :wa<cr>:tabe term://open %<cr>
@@ -56,5 +57,14 @@ noremap <leader>a :exe ':Ag ' . expand('<cword>')<CR>
 noremap <leader>hh :History<cr>
 
 " Term mode mapping
-nnoremap <leader>t :vsplit term://bash<cr>
-tnoremap <Esc> <C-\><C-n>
+nnoremap <leader>t :vsplit term://zsh<cr>
+nnoremap <Esc> <C-\><C-n>
+
+" luasnip
+imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+" -1 for jumping backwards.
+inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+
+snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+

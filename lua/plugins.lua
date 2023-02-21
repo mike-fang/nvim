@@ -3,10 +3,14 @@
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-    use 'ervandew/supertab'
+    --use 'ervandew/supertab'
     use 'altercation/vim-colors-solarized'
-    use 'Raimondi/delimitMate'
+    --use 'Raimondi/delimitMate'
     use 'tpope/vim-surround'
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
 
 	use 'junegunn/fzf'
 	use 'junegunn/fzf.vim'
@@ -14,8 +18,8 @@ return require('packer').startup(function(use)
     use 'simnalamburt/vim-mundo'
     use {
       'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    -- or                            , branch = '0.1.x',
-      requires = { {'nvim-lua/plenary.nvim'} }
+      requires = { {'nvim-lua/plenary.nvim'} },
+      config = [[require('config.telescope')]]
     }
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -45,5 +49,6 @@ return require('packer').startup(function(use)
       config = [[require("config.lsp")]]
 	}
     use 'junegunn/vim-peekaboo'
+    use "lukas-reineke/indent-blankline.nvim"
 end)
 

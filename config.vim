@@ -12,6 +12,7 @@ set autoindent
 set ignorecase
 set smartcase
 set autoread
+let g:netrw_liststyle=3
 
 " No swap, presistent undo
 set noswapfile
@@ -56,3 +57,6 @@ autocmd BufEnter,InsertLeave * :syntax sync fromstart
 " Use treesitter folding
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+" Force htmldjango
+au BufNewFile,BufRead *.html set ft=htmldjango
