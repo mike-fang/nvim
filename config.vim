@@ -60,3 +60,6 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 " Force htmldjango
 au BufNewFile,BufRead *.html set ft=htmldjango
+
+" Keep 3 lines below and above cursor
+set scrolloff=3

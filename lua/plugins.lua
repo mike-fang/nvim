@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
 --    use 'mbbill/undotree'
     use 'simnalamburt/vim-mundo'
     use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.0',
+      'nvim-telescope/telescope.nvim', tag = '0.1.5',
       requires = { {'nvim-lua/plenary.nvim'} },
       config = [[require('config.telescope')]]
     }
