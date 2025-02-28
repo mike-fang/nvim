@@ -2,12 +2,15 @@ vim.g.echo_source = 0
 
 vim.g.config_dir = vim.fn.expand("$HOME/.config/nvim/")
 vim.g.userpath_maps = vim.g.config_dir .. 'lua/user/maps.lua'
+vim.g.userpath_maps = vim.g.config_dir .. 'lua/user/maps.lua'
 vim.g.userpath_config = vim.g.config_dir .. 'lua/user/config.lua'
+vim.g.userpath_functions = vim.g.config_dir .. 'lua/user/functions.lua'
 vim.g.userpath_plugins = vim.g.config_dir .. 'lua/plugins/plugins.lua'
 
 require('user.maps')
 require("config.lazy")
 require('user.config')
+require('user.functions')
 
 -- Python venv
 vim.g.python3_host_prog = vim.fn.expand("$HOME/.config/nvim/.venv/bin/python3")

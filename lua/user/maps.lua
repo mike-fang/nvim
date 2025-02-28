@@ -9,10 +9,16 @@ vim.g.maplocalleader = " "
 -- Short alias for readability
 local keymap = vim.keymap.set
 
+
+-- LSP
+keymap('n', '<Leader>rn', vim.lsp.buf.rename)
+keymap("n", "K", vim.lsp.buf.hover)
+
 -- Undotree
 keymap("n", "<leader>ud", ":UndotreeToggle<CR>")
 
 -- Telescope
+keymap('n', '<leader>FF', ":lua require('fzf-lua').files({cwd = vim.fn.expand('%:p:h')})<CR>", { noremap = true, silent = true })
 keymap("n", "<leader>ff", ":FzfLua files<CR>")
 keymap("n", "<leader>fg", ":FzfLua live_grep<CR>")
 
@@ -22,10 +28,9 @@ keymap("n", "<leader>ec", ":tab drop " .. vim.g.userpath_config .. "<CR>")
 keymap("n", "<leader>em", ":tab drop " .. vim.g.userpath_maps .. "<CR>")
 keymap("n", "<leader>en", ":tab drop ~/.config/nvim/functions.lua<CR>")
 keymap("n", "<leader>ev", ":tab drop ~/.config/nvim/init.lua<CR>")
-keymap("n", "<leader>el", ":tab drop ~/.config/nvim/lua/<CR>")
 
 -- Execute with dynamic filetype
-keymap("n", "<leader>ef", "<cmd>execute ':e ~/.config/nvim/ftplugin/' . &filetype . '.lua'<CR>")
+keymap("n", "<leader>ef", "<cmd>execute ':tab drop ~/.config/nvim/ftplugin/' . &filetype . '.lua'<CR>")
 
 -- Open/create misc files
 keymap("n", "<leader>et", ":vsplit TODO<CR>")
@@ -56,12 +61,16 @@ keymap("n", "<leader><space>", "za")
 keymap("n", "<leader>ss", ":mksession! ~/temp_vim_session.vim<CR>")
 keymap("n", "<leader>sr", ":source ~/temp_vim_session.vim<CR>")
 
+-- Yank to clipboard
+keymap("v", "Y", '"+y')
+
 
 -- Selected paste
 keymap("n", "gp", "'[V']")
 
 -- Terminal
-keymap("n", "<leader>t", ":vsplit term://zsh<CR>")
+keymap("n", "<leader>t", ":ToggleTerm<CR>")
+keymap("n", "<C-t>", ":ToggleTerm<CR>")
 -- Use a terminal-mode mapping for Esc:
 keymap("t", "<Esc>", [[<C-\><C-n>]])
 

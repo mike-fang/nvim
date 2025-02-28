@@ -42,12 +42,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
   command = "startinsert"
 })
 
--- Tabs
 -- Equivalent to `set backspace=2`, but more explicit
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.smartindent = true
 
 -- Split behavior
 vim.opt.splitright = true
@@ -78,3 +78,19 @@ vim.opt.scrolloff = 3
 
 -- Copy to clipboard
 -- vim.opt.clipboard = "unnamed"
+--
+-- Disable virtual text for diagnostics
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+})
+
+-- Show diagnostics in a floating window on hover
+vim.api.nvim_create_autocmd("CursorMoved", {
+    callback = function()
+        vim.diagnostic.open_float(nil, { focus = false })
+    end,
+})
