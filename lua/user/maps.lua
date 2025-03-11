@@ -69,7 +69,7 @@ keymap("v", "Y", '"+y')
 keymap("n", "gp", "'[V']")
 
 -- Terminal
-keymap("n", "<leader>t", ":ToggleTerm<CR>")
+keymap("n", "<leader>tt", ":ToggleTerm<CR>")
 keymap("n", "<C-t>", ":ToggleTerm<CR>")
 -- Use a terminal-mode mapping for Esc:
 keymap("t", "<Esc>", [[<C-\><C-n>]])

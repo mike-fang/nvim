@@ -1,10 +1,2 @@
-v fix loading
-    v set variables for files
-V port through all needed plugins
-_ new plugins:
-    V copilot
-    _ AI chat
-    X whichkey
-    V go through lazyvim
-_ don't next top level?
-
+test
+jk;

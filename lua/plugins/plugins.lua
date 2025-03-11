@@ -105,22 +105,47 @@ return {
         },
     },
     -- fzf
+   -- {
+   --     "ibhagwan/fzf-lua",
+   --     dependencies = { "echasnovski/mini.icons" },
+   --     opts = {},
+   -- },
+    -- Snacks
     {
-        "ibhagwan/fzf-lua",
-        dependencies = { "echasnovski/mini.icons" },
-        opts = {},
-    },
-    -- undotree
-    {
-        "mbbill/undotree"
-    },
-    -- indent guide
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        ---@module "ibl"
-        ---@type ibl.config
-        opts = {},
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            bigfile = { enabled = true },
+            explorer = {
+                enabled = true,
+                replace_netrw = true,
+            },
+            indent = { enabled = true },
+            picker = { enabled = true },
+            quickfile = { enabled = true },
+            scope = { enabled = true },
+        },
+        keys = {
+            -- Picker
+            { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+            { "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep" },
+            { "<leader>ee", function() Snacks.explorer() end, desc = "File Explorer" },
+            { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+            { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+            { "<leader>ud", function() Snacks.picker.undo() end, desc = "Undo History" },   
+            -- LSP
+            { "gD", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+            { "gd", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+            { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+            { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+            { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+
+        }
     },
     -- LSP
     {
@@ -425,4 +450,6 @@ return {
         version = "*",
         opts = {--[[ things you want to change go here]]},
     }
+
+
 }
