@@ -26,7 +26,7 @@ vim.g.netrw_liststyle = 3
 -- No swap, enable persistent undo
 vim.opt.swapfile = false
 vim.opt.undofile = true
-vim.opt.undodir = "~/.vim/undo"
+vim.opt.undodir = vim.fn.expand("~/.vim/undo")
 
 -- filetype plugin on
 vim.cmd("filetype plugin on")
