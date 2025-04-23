@@ -18,9 +18,9 @@ keymap("n", "K", vim.lsp.buf.hover)
 keymap("n", "<leader>ud", ":UndotreeToggle<CR>")
 
 -- Telescope
-keymap('n', '<leader>FF', ":lua require('fzf-lua').files({cwd = vim.fn.expand('%:p:h')})<CR>", { noremap = true, silent = true })
-keymap("n", "<leader>ff", ":FzfLua files<CR>")
-keymap("n", "<leader>fg", ":FzfLua live_grep<CR>")
+--keymap('n', '<leader>FF', ":lua require('fzf-lua').files({cwd = vim.fn.expand('%:p:h')})<CR>", { noremap = true, silent = true })
+--keymap("n", "<leader>ff", ":FzfLua files<CR>")
+--keymap("n", "<leader>fg", ":FzfLua live_grep<CR>")
 
 -- Edit config files
 keymap("n", "<leader>eb", ":tab drop " .. vim.g.userpath_plugins .. "<CR>")
@@ -34,7 +34,7 @@ keymap("n", "<leader>ef", "<cmd>execute ':tab drop ~/.config/nvim/ftplugin/' . &
 
 -- Open/create misc files
 keymap("n", "<leader>et", ":vsplit TODO<CR>")
-keymap("n", "<leader>ep", ":vsplit scratch_pad.py<CR>")
+keymap("n", "<leader>ep", ":vsplit .scratch_pad.py<CR>")
 
 -- Source vimrc
 --keymap("n", "<leader>sv", ":luafile ~/.config/nvim/init.lua<CR>:luafile ~/.config/nvim/maps.lua<CR>:luafile ~/.config/nvim/config.lua<CR>")
@@ -42,6 +42,7 @@ keymap("n", "<leader>sv", function() reload_config() end)
 keymap("n", "<leader>sb", ":luafile ~/.config/nvim/lua/plugins/plugins.lua<CR>:Lazy sync<CR>")
 
 -- Window splits
+keymap("n", "<leader>ts", ":tab split<CR>")
 keymap("n", "<leader>vs", ":vsplit<CR>")
 keymap("n", "<leader>hs", ":split<CR>")
 

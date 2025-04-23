@@ -104,12 +104,6 @@ return {
             markdown = true,
         },
     },
-    -- fzf
-   -- {
-   --     "ibhagwan/fzf-lua",
-   --     dependencies = { "echasnovski/mini.icons" },
-   --     opts = {},
-   -- },
     -- Snacks
     {
         "folke/snacks.nvim",
@@ -219,28 +213,6 @@ return {
             }
         end,
     },
-    -- Linters
-   -- {
-   --     {
-   --         "mfussenegger/nvim-lint",
-   --         config = function()
-   --             local lint = require("lint")
-
-   --             -- Configure which linters to use for which filetype
-   --             lint.linters_by_ft = {
-   --                 python = { "ruff" },
-   --                 lua = { "luacheck" },
-   --             }
-
-   --             -- Auto-run lint on file save
-   --             vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-   --                 callback = function()
-   --                     require("lint").try_lint()
-   --                 end,
-   --             })
-   --         end,
-   --     },
-   -- },
     --copilot
     {
         "zbirenbaum/copilot.lua",
@@ -249,22 +221,18 @@ return {
         config = function()
             require("copilot").setup({
                 suggestion = {
-                    enabled = false,
-                },
-                panel = {
-                    enabled = false,          -- enable the Copilot panel to see multiple suggestions
+                    enabled = true,
                 },
             })
         end,
     },
-    -- copilot
     {
         "zbirenbaum/copilot-cmp",
         config = function ()
             require("copilot_cmp").setup()
         end
     },
-    -- completion
+    --completion
     {
         {
             "hrsh7th/nvim-cmp",
@@ -283,7 +251,7 @@ return {
                     snippet = {
                         expand = function(args)
                             -- If you're using LuaSnip or another snippet engine
-                            require("luasnip").lsp_expand(args.body)
+                            --require("luasnip").lsp_expand(args.body)
                         end,
                     },
                     mapping = {
@@ -315,11 +283,11 @@ return {
                 })
 
                 -- Initialize copilot-cmp (only needed if you didn't do it in its own config)
-                require("copilot_cmp").setup()
+                --require("copilot_cmp").setup()
             end,
         },
         {
-            "L3MON4D3/LuaSnip",
+            --"L3MON4D3/LuaSnip",
             -- ... snippet config ...
         },
     },
@@ -450,6 +418,4 @@ return {
         version = "*",
         opts = {--[[ things you want to change go here]]},
     }
-
-
 }
