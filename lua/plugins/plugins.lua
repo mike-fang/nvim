@@ -1,18 +1,19 @@
 return {
     -- Solarized
-    {
-        'maxmx03/solarized.nvim',
-        lazy = false,
-        priority = 1000,
-        ---@type solarized.config
-        opts = {},
-        config = function(_, opts)
-            vim.o.termguicolors = true
-            vim.o.background = 'dark'
-            require('solarized').setup(opts)
-            vim.cmd.colorscheme 'solarized'
-        end,
-    },
+   {
+       'maxmx03/solarized.nvim',
+       lazy = false,
+       priority = 1000,
+       ---@type solarized.config
+       opts = {},
+       config = function(_, opts)
+           vim.o.termguicolors = true
+           vim.o.background = 'dark'
+           require('solarized').setup(opts)
+           vim.cmd.colorscheme 'solarized'
+       end,
+   },
+    --{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
     -- mini.surround
     { 
         "echasnovski/mini.surround",
@@ -142,77 +143,90 @@ return {
         }
     },
     -- LSP
-    {
-        {
-            "neovim/nvim-lspconfig",
-            config = function()
-                local lspconfig = require("lspconfig")
+ --   {
+ --       {
+ --           "neovim/nvim-lspconfig",
+ --           config = function()
+ --               local lspconfig = require("lspconfig")
 
-                -- Standard on_attach function for keymaps, etc.
-                local on_attach = function(client, bufnr)
-                    local opts = { buffer = bufnr, noremap = true, silent = true }
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                    -- Add more keymaps or config here if desired
-                end
+ --               -- Standard on_attach function for keymaps, etc.
+ --               local on_attach = function(client, bufnr)
+ --                   local opts = { buffer = bufnr, noremap = true, silent = true }
+ --                   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+ --                   -- Add more keymaps or config here if desired
+ --               end
 
-                -- Setup for Python LSP
-                lspconfig.pyright.setup({
-                    on_attach = on_attach,
-                    -- You can add extra `settings = { ... }` if needed
-                })
+ --               -- Setup for Python LSP
+ --               lspconfig.pyright.setup({
+ --                   on_attach = on_attach,
+ --                   -- You can add extra `settings = { ... }` if needed
+ --               })
 
-                -- Setup for Rust (your existing config)
-                lspconfig.rust_analyzer.setup({
-                    on_attach = on_attach,
-                })
-            end,
-        },
-    },
+ --               -- Setup for Rust (your existing config)
+ --               lspconfig.rust_analyzer.setup({
+ --                   on_attach = on_attach,
+ --               })
+ --           end,
+ --       },
+ --   },
     -- Mason
     {
-        "williamboman/mason.nvim",
-        config = true,
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "neovim/nvim-lspconfig" },
+        "mason-org/mason.nvim",
+        dependencies = {
+            "mason-org/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
+        },
         config = function()
-            require("mason-lspconfig").setup {
-                -- Ensure certain servers are always installed
+            require("mason").setup()
+            require("mason-lspconfig").setup({
                 ensure_installed = { "pyright", "rust_analyzer", "lua_ls" },
-            }
-
-            -- "handlers" gets called for *every* installed server
-            require("mason-lspconfig").setup_handlers {
-                -- 1. Default handler
-                function(server_name)
-                    require("lspconfig")[server_name].setup({
-                        on_attach = function(client, bufnr)
-                            -- Your on_attach code, e.g. keymaps
-                            local opts = { buffer = bufnr, noremap = true, silent = true }
-                            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                            -- etc.
-                        end,
-                    })
-                end,
-
-                -- 2. Optionally override certain servers
-                ["lua_ls"] = function()
-                    require("lspconfig").lua_ls.setup {
-                        on_attach = function(client, bufnr)
-                            local opts = { buffer = bufnr, noremap = true, silent = true }
-                            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                        end,
-                        settings = {
-                            Lua = {
-                                diagnostics = { globals = { "vim" } },
-                            },
-                        },
-                    }
-                end,
-            }
+            })
         end,
     },
+ --   {
+ --       "williamboman/mason.nvim",
+ --       config = true,
+ --   },
+ --   {
+ --       "williamboman/mason-lspconfig.nvim",
+ --       dependencies = { "neovim/nvim-lspconfig" },
+ --       config = function()
+ --           require("mason-lspconfig").setup {
+ --               -- Ensure certain servers are always installed
+ --               ensure_installed = { "pyright", "rust_analyzer", "lua_ls" },
+ --           }
+
+ --           -- "handlers" gets called for *every* installed server
+ --           require("mason-lspconfig").setup_handlers {
+ --               -- 1. Default handler
+ --               function(server_name)
+ --                   require("lspconfig")[server_name].setup({
+ --                       on_attach = function(client, bufnr)
+ --                           -- Your on_attach code, e.g. keymaps
+ --                           local opts = { buffer = bufnr, noremap = true, silent = true }
+ --                           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+ --                           -- etc.
+ --                       end,
+ --                   })
+ --               end,
+
+ --               -- 2. Optionally override certain servers
+ --               ["lua_ls"] = function()
+ --                   require("lspconfig").lua_ls.setup {
+ --                       on_attach = function(client, bufnr)
+ --                           local opts = { buffer = bufnr, noremap = true, silent = true }
+ --                           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+ --                       end,
+ --                       settings = {
+ --                           Lua = {
+ --                               diagnostics = { globals = { "vim" } },
+ --                           },
+ --                       },
+ --                   }
+ --               end,
+ --           }
+ --       end,
+ --   },
     --copilot
     {
         "zbirenbaum/copilot.lua",
